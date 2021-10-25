@@ -12,7 +12,7 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.eks.token
 }
 
-data "aws_subnet_ids" "holded_subnets" {
+data "aws_subnet_ids" "subnets" {
   vpc_id = var.aws_vpc
 }
 
@@ -22,7 +22,7 @@ module "eks" {
   cluster_version = "1.21"
   cluster_name    = var.aws_clusterName
   vpc_id          = var.aws_vpc
-  subnets         = data.aws_subnet_ids.holded_subnets.ids
+  subnets         = data.aws_subnet_ids.subnets.ids
 
   worker_groups = [
     {
@@ -31,3 +31,5 @@ module "eks" {
     }
   ]
 }
+# TODO: user data and asg config
+# TODO: Disaster recovering
