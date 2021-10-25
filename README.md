@@ -12,6 +12,7 @@ Monitoring and observability platform cloud based
 - S3?
 - Disaster Recovering?
 
-Usage: 
-aws eks update-kubeconfig --name eks-cluster 
-k apply -f config_map_aws_auth.yaml
+
+
+1. Functional Architecture
+2. Functional Monitoring platform
