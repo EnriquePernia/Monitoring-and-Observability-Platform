@@ -1,0 +1,93 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+spec:
+  version: 7.15.1
+  nodeSets:
+  - name: master
+    count: 3
+    podTemplate:
+      spec:
+        initContainers:
+        - name: install-plugins
+          command:
+          - sh
+          - -c
+          - |
+            bin/elasticsearch-plugin install --batch repository-s3
+        - name: add-aws-keys
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-s3-keys
+                key: access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-s3-keys
+                key: access-secret-key
+          command:
+          - sh
+          - -c
+          - |
+            echo $AWS_ACCESS_KEY_ID | bin/elasticsearch-keystore add --stdin --force s3.client.default.access_key
+            echo $AWS_SECRET_ACCESS_KEY | bin/elasticsearch-keystore add --stdin --force s3.client.default.secret_key
+    #     containers:
+    #     - name: elasticsearch
+    #       volumeMounts:
+    #       - name: es-snap-repo-vol
+    #         mountPath: /es-snaps
+    #     volumes:
+    #       - name: es-snap-repo-vol
+    #         awsElasticBlockStore:
+    #           volumeID: vol-0a40ad341fecc55e2
+    #           fsType: ext4
+    config:
+      node.roles: ["master"]
+      node.store.allow_mmap: false
+      # path.repo: [“/es-snaps”]
+  - name: data
+    count: 3
+    podTemplate:
+      spec:
+        initContainers:
+        - name: install-plugins
+          command:
+          - sh
+          - -c
+          - |
+            bin/elasticsearch-plugin install --batch repository-s3
+        - name: add-aws-keys
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-s3-keys
+                key: access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-s3-keys
+                key: access-secret-key
+          command:
+          - sh
+          - -c
+          - |
+            echo $AWS_ACCESS_KEY_ID | bin/elasticsearch-keystore add --stdin --force s3.client.default.access_key
+            echo $AWS_SECRET_ACCESS_KEY | bin/elasticsearch-keystore add --stdin --force s3.client.default.secret_key
+        # containers:
+        # - name: elasticsearch
+        #   volumeMounts:
+        #   - name: es-snap-repo-vol
+        #     mountPath: /es-snaps
+        # volumes:
+        # - name: es-snap-repo-vol
+        #   awsElasticBlockStore:
+        #     volumeID: vol-0a40ad341fecc55e2
+        #     fsType: ext4         
+    config:
+      node.roles: ["data", "ingest"]
+      node.store.allow_mmap: false
+      # path.repo: [“/es-snaps”]
