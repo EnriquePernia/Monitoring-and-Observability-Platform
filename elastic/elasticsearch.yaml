@@ -44,7 +44,7 @@ spec:
     #         awsElasticBlockStore:
     #           volumeID: vol-0a40ad341fecc55e2
     #           fsType: ext4
-    # config:
+    config:
       node.roles: ["master"]
       node.store.allow_mmap: false
       # path.repo: [“/es-snaps”]

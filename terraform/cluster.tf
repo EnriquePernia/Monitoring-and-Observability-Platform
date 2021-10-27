@@ -26,12 +26,10 @@ module "eks" {
 
   worker_groups = [
     {
-      instance_type = "m4.large"
-      asg_max_size  = 5
-      asg_min_size  = 3
-      asg_desired_capacity = 3
+      instance_type = var.aws_instance_type
+      asg_max_size  = var.aws_asg_max_size
+      asg_min_size  = var.aws_asg_min_size
+      asg_desired_capacity = var.aws_asg_desired_capacity
     }
   ]
 }
-# TODO: user data and asg config
-# TODO: Disaster recovering
