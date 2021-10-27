@@ -4,7 +4,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+*.tfvars
 kub*
 # Crash log files
 crash.log
@@ -32,3 +32,4 @@ override.tf.json
 .terraform*
 *.txt
 secret*
+.DS_STORE

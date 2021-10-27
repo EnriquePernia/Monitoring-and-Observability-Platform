@@ -91,7 +91,7 @@ variable aws_asg_min_size {
   description = "ASG min size"
 }
 
-variable ws_asg_desired_capacity {
+variable aws_asg_desired_capacity {
   type = number
   description = "ASG desired capacity"
 }
