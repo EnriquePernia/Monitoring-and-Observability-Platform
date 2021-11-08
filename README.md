@@ -6,12 +6,11 @@ Monitoring and observability platform cloud based
 - AutoScaling Group containing 3-5 m4.large instances based on the latest EKS Amazon Linux 2 AMI: Operator managed Kubernetes worker nodes for running Kubernetes service deployments
 - Associated VPC, Internet Gateway, Security Groups, and Subnets: Operator managed networking resources for the EKS Cluster and worker node instances
 - Associated IAM Roles and Policies: Operator managed access resources for EKS and worker node instances
-- ElasticSearch
-- Kibana
-- FileBeat
-- MetricBeat
-- Logstash
-- S3
+- ElasticSearch: Distributed search engine responsible for storing and handling data. Divided into two groups of nodes, 3 of them are master nodes (3 to avoid split brain decision if one of them goes down) and the other 3 has data and ingest roles.
+- Kibana: Interface to interact with data stored on elasticSearch
+- FileBeat: Used get logs from all the resources.
+- MetricBeat: Used to get metrics from all the resources.
+- S3: Bucket used to set up a disaster recovery method.
 
 
 ## Goals:
@@ -32,7 +31,6 @@ Monitoring and observability platform cloud based
 5. Add  MetricBeat to visualice system metrics. ✅
 6. DR Add an s3 bucket to store snapshots in case everything else fails. ✅
 7. Setup snapshot config on elasticsearch. ✅
-8. Add logstash to manage logs.
 
 ## Usage:
 1. cd terraform
