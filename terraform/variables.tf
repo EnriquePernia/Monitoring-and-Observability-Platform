@@ -31,44 +31,9 @@ variable "aws_image_id" {
   description = "aws image id"
 }
 
-variable "aws_codeDeploy_ARN" {
-  type = string
-  description = "aws codeDeploy policy"
-}
-
-variable "aws_EC2codeDeploy_ARN" {
-  type = string
-  description = "aws EC2codeDeploy policy"
-}
-
 variable "aws_clusterName" {
   type = string
   description = "Name for EKS cluster"
-}
-
-variable "aws_az_count" {
-  type = number
-  description = "Number of azs"
-}
-
-variable "aws_vpc_cidr_base" {
-  type = string
-  description = "Cdir base"
-}
-
-variable "aws_private_subnets" {
-  type = list
-  description = "Private subnets for vpc"
-}
-
-variable "aws_public_subnets" {
-  type = list
-  description = "Public subnets for vpc"
-}
-
-variable "aws_my_ip" {
-  type = string
-  description = "My ip"
 }
 
 variable "aws_bucket_name" {
