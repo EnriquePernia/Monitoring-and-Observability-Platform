@@ -33,9 +33,4 @@ Monitoring and observability platform cloud based
 7. Setup snapshot config on elasticsearch. ✅
 
 ## Usage:
-1. cd terraform
-2. ./run.sh
-3. cd ../elastic
-4. aws eks update-kubeconfig --name eks-cluster
-5. kubectl create secret generic aws-s3-keys --from-literal=access-key-id=<YOUR AWS ID> --from-literal=access-secret-key=<YOUR AWS SECRET KEY>
-6. ./run.sh
+1. `./deploy.sh`
