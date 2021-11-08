@@ -33,4 +33,6 @@ Monitoring and observability platform cloud based
 7. Setup snapshot config on elasticsearch. ✅
 
 ## Usage:
-1. `./deploy.sh`
+1. Fill `aws_access_key` & `aws_secret_key` With your own credentials on .tfvars file.
+2. Fill `--from-literal=access-key-id=< YOUR AWS ID > --from-literal=access-secret-key=< YOUR AWS SECRET KEY >` on deploy.sh with the same credentials that you used in step 1
+3. Run `./deploy.sh`
