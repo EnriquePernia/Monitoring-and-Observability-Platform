@@ -32,5 +32,11 @@ Monitoring and observability platform cloud based
 6. DR Add an s3 bucket to store snapshots in case everything else fails. ✅
 7. Setup snapshot config on elasticsearch. ✅
 
+
+## Architecture:
+![Alt text](./images/aws.png)
+
+## App overview:
+![Alt text](./images/elastic.png)
 ## Usage:
 1. `./deploy.sh`
