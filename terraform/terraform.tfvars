@@ -1,7 +1,7 @@
 aws_access_key = ""
 aws_secret_key = ""
 aws_region = "eu-west-1"
-aws_key = "AWS TEST"
+aws_key = ""
 aws_vpc = "vpc-1c5dee65"
 aws_azs = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 aws_image_id = "ami-0d1bf5b68307103c2"
